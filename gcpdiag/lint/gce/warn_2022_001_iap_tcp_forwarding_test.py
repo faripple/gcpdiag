@@ -11,17 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test code in bp_2022_002_regional_cluster.py."""
+"""Test code in warn_2022_001_iap_tcp_forwarding.py."""
 
 import io
 from unittest import mock
 
 from gcpdiag import lint, models
 from gcpdiag.lint import report_terminal
-from gcpdiag.lint.gke import bp_2022_002_regional_cluster
+from gcpdiag.lint.gce import warn_2022_001_iap_tcp_forwarding
 from gcpdiag.queries import apis_stub
 
-DUMMY_PROJECT_NAME = 'gcpdiag-gke1-aaaa'
+DUMMY_PROJECT_NAME = 'gcpdiag-gce1-aaaa'
 
 
 @mock.patch('gcpdiag.queries.apis.get_api', new=apis_stub.get_api_stub)
@@ -36,7 +36,7 @@ class Test:
                          rule_id='9999_999',
                          short_desc='short description',
                          long_desc='long description',
-                         run_rule_f=bp_2022_002_regional_cluster.run_rule)
+                         run_rule_f=warn_2022_001_iap_tcp_forwarding.run_rule)
     lint_report = report.rule_start(rule, context)
     rule.run_rule_f(context, lint_report)
     report.rule_end(rule, context)
